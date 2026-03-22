@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بنك نقابة RITZ | مملكة سبارتا</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -9,98 +10,82 @@
 <body>
 
     <div class="container">
-        <!-- Header: Basmala and Title -->
         <div class="header-glow">
             <div class="basmala">﷽</div>
-            <div class="main-title">
-                ★ ◞بـنـك نقــابـة ╎RITZ🕸 ⇩◜
-            </div>
+            <div class="main-title">★ ◞بـنـك نقــابـة ╎RITZ🕸 ⇩◜</div>
         </div>
 
-        <!-- Sparta Ranks Section -->
+        <!-- الرتب العليا -->
         <div class="rank-section">
-            <div class="section-title">
-                🌌 ▁▂▃▄ *رُتَب مملكة سبارتا*  ▄▃▂▁ 🌌
-            </div>
-            <div class="rank-list" id="sparta-ranks-container">
-                <!-- Data will be loaded via JS -->
-            </div>
+            <div class="section-title">⎔⋅• ━ ╼╃ ⌬〔الــࢪتــــــب العـليـا〕⌬ ╄╾ ━ •⋅⎔</div>
+            <div class="rank-list" id="elite-ranks"></div>
         </div>
 
-        <!-- Sayko Ranks Section -->
+        <!-- الرتب الملكية -->
         <div class="rank-section">
-            <div class="section-title">
-                🕸▁▂▃▄ رُتَب نقابة RITZ  ▄▃▂▁ 🕸
-            </div>
-            <div class="rank-list" id="sayko-ranks-container">
-                <!-- Data will be loaded via JS -->
-            </div>
+            <div class="section-title">⎔⋅• ━ ╼╃ ⌬〔اڷرتب اڷمڷكيےة〕⌬ ╄╾ ━ •⋅⎔</div>
+            <div class="rank-list" id="royal-ranks"></div>
         </div>
 
-        <!-- Alphabet Letters Section -->
+        <!-- الرتب الإدارية -->
         <div class="rank-section">
-            <div class="section-title">
-                ✨ ▁▂▃▄ الـحـروف ▄▃▂▁ ✨
-            </div>
-            <div class="letters-grid" id="letters-container">
-                <!-- Data will be loaded via JS -->
-            </div>
+            <div class="section-title">⌘￤◞الــرتـب الإداريــة لــريتـز⚡️ ⬐◜</div>
+            <div class="rank-list" id="admin-ranks"></div>
         </div>
 
-        <!-- Footer -->
+        <!-- الحروف -->
+        <div class="rank-section">
+            <div class="section-title">✨ ▁▂▃▄ الـحـروف ▄▃▂▁ ✨</div>
+            <div class="letters-grid" id="letters-container"></div>
+        </div>
+
         <div class="footer">
             <div class="credit-line">🩸تم تصميم هذا البنك من مملكة سبارتا على يد ايتاشي🩸</div>
             <div class="accountant-line">*المحاسب💰.* *         ايتاشي *</div>
         </div>
     </div>
 
-    <!-- Admin Panel Button (Floating) -->
     <button id="admin-toggle-btn" class="admin-toggle">⚙️ إدارة</button>
 
-    <!-- Admin Modal (Hidden by default) -->
+    <!-- نافذة الإدارة -->
     <div id="admin-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2>✨ لوحة التحكم ✨</h2>
-            <p>إضافة / تعديل عضو</p>
-            
-            <div class="form-group">
-                <label>القسم:</label>
-                <select id="admin-section">
-                    <option value="sparta">رُتَب مملكة سبارتا</option>
-                    <option value="sayko">رُتَب نقابة SAYKO</option>
-                    <option value="letters">الحروف (ألف - ياء)</option>
-                </select>
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="elite">الرتب العليا</button>
+                <button class="tab-btn" data-tab="royal">الرتب الملكية</button>
+                <button class="tab-btn" data-tab="admin">الرتب الإدارية</button>
+                <button class="tab-btn" data-tab="letters">الحروف</button>
             </div>
             
-            <div class="form-group">
-                <label>اختر الرتبة / الحرف:</label>
-                <select id="admin-rank-select">
-                    <option value="">-- اختر من القائمة --</option>
-                </select>
+            <div id="elite-panel" class="panel active">
+                <textarea id="elite-data" rows="15" placeholder="الرتبة | اللقب | المال"></textarea>
+                <button class="save-panel-btn" data-section="elite">💾 حفظ الرتب العليا</button>
             </div>
             
-            <div class="form-group">
-                <label>اللقب (الاسم):</label>
-                <input type="text" id="admin-name" placeholder="مثال: زورو, ايتاشي" autocomplete="off">
+            <div id="royal-panel" class="panel">
+                <textarea id="royal-data" rows="10" placeholder="الرتبة | اللقب | المال"></textarea>
+                <button class="save-panel-btn" data-section="royal">💾 حفظ الرتب الملكية</button>
             </div>
             
-            <div class="form-group">
-                <label>المال (♾️ أو رقم):</label>
-                <input type="text" id="admin-money" placeholder="♾️ أو 100,000,000" value="♾️" autocomplete="off">
+            <div id="admin-panel" class="panel">
+                <textarea id="admin-data" rows="12" placeholder="الرتبة | اللقب | المال"></textarea>
+                <button class="save-panel-btn" data-section="admin">💾 حفظ الرتب الإدارية</button>
             </div>
             
-            <div class="form-group">
-                <label>عدد التكرار (للحروف فقط):</label>
-                <input type="number" id="admin-repeat" placeholder="عدد الأشخاص تحت هذا الحرف" value="1" min="1" max="10">
-                <small style="color:#aaa;">👥 للحروف: يمكنك إضافة أكثر من شخص بنفس الحرف</small>
+            <div id="letters-panel" class="panel">
+                <label>اختر الحرف:</label>
+                <select id="letter-select"></select>
+                <textarea id="letters-data" rows="10" placeholder="اللقب | المال"></textarea>
+                <button class="save-panel-btn" data-section="letters">💾 حفظ أعضاء هذا الحرف</button>
             </div>
             
-            <button id="add-member-btn" class="save-btn">➕ إضافة / تحديث عضو</button>
-            <hr>
-            <p class="warning-note">⚠️ ملاحظة: للحروف، يمكنك إضافة عدة أشخاص تحت نفس الحرف. كل إضافة تضاف كعضو جديد.</p>
+            <p class="warning-note">📝 التنسيق: سطر لكل عضو | مثال: زورو | ♾️</p>
         </div>
     </div>
+
+    <div id="update-toast" class="update-toast">🔄 تم التحديث</div>
 
     <script src="script.js"></script>
 </body>

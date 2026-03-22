@@ -1,92 +1,87 @@
-// Default Data Structure
-const defaultData = {
-    sparta: [
-        { rank: "المؤسس", name: "زورو", money: "♾️" },
-        { rank: "نائب المؤسس", name: "ايتاشي", money: "♾️" },
-        { rank: "اللورد", name: "توجي", money: "♾️" },
-        { rank: "نواب اللورد", name: "كيلوا", money: "♾️" },
-        { rank: "نواب اللورد", name: "", money: "♾️" },
-        { rank: "السلطان", name: "اينيل", money: "♾️" },
-        { rank: "الدوق", name: "", money: "♾️" },
-        { rank: "نواب الدوق", name: "", money: "♾️" },
-        { rank: "نواب الدوق", name: "", money: "♾️" },
-        { rank: "نواب الدوق", name: "", money: "♾️" }
-    ],
-    sayko: [
-        { rank: "الأدميرال", name: "", money: "﴿🕸﴾" },
-        { rank: "نائب الأدميرال", name: "", money: "﴿🕸﴾" },
-        { rank: "العميد", name: "", money: "﴿🕸﴾" },
-        { rank: "التشيبوكاي", name: "", money: "﴿🕸﴾" },
-        { rank: "الملازم", name: "", money: "﴿🕸﴾" },
-        { rank: "حامل بريق", name: "", money: "﴿🕸﴾" },
-        { rank: "حامل راية", name: "", money: "﴿🕸﴾" },
-        { rank: "مشرف متدرب", name: "", money: "" }
-    ],
-    letters: {
-        // كل حرف يحتوي على قائمة من الأعضاء
-        "`• ألف •`": [],
-        "`• باء •`": [],
-        "`• تاء •`": [],
-        "`• جيم •`": [],
-        "`• دال •`": [],
-        "`• راء •`": [],
-        "`• زال •`": [],
-        "`• سين •`": [],
-        "`• قاف •`": [],
-        "`• كاف •`": [],
-        "`• لام •`": [],
-        "`• ميم •`": [],
-        "`• نون •`": [],
-        "`• هاء •`": [],
-        "`• واو •`": [],
-        "`• ياء •`": []
-    }
-};
+// ========================================
+// 📁 البيانات الرئيسية - عدل هنا مباشرة
+// ========================================
 
-// إضافة بعض الأعضاء الافتراضية للحروف
-defaultData.letters["`• ألف •`"] = [];
-defaultData.letters["`• باء •`"] = [];
-defaultData.letters["`• تاء •`"] = [];
-
-// Load or initialize localStorage
-function loadData() {
-    let stored = localStorage.getItem("RitzBankDataV2");
-    if (!stored) {
-        localStorage.setItem("RitzBankDataV2", JSON.stringify(defaultData));
-        return JSON.parse(JSON.stringify(defaultData));
-    }
-    return JSON.parse(stored);
-}
-
-let bankData = loadData();
-
-// قائمة الحروف للمنيو المنسدل
-const letterList = [
-    "`• ألف •`", "`• باء •`", "`• تاء •`", "`• جيم •`", "`• دال •`",
-    "`• راء •`", "`• زال •`", "`• سين •`", "`• قاف •`", "`• كاف •`",
-    "`• لام •`", "`• ميم •`", "`• نون •`", "`• هاء •`", "`• واو •`", "`• ياء •`"
+// 👑 الرتب العليا (فلوس لا نهائية)
+const eliteRanks = [
+    { rank: "المؤسس", name: "زورو", money: "♾️", icon: "⚔️", symbol: "♔" },
+    { rank: "نائب المؤسس", name: "أيتاشي", money: "♾️", icon: "👑", symbol: "♕" },
+    { rank: "اللورد", name: "توجي", money: "♾️", icon: "💀", symbol: "♖" },
+    { rank: "السلطان", name: "كيلوا", money: "♾️", icon: "🫀", symbol: "♗" },
+    { rank: "الستاند", name: "اينيل", money: "♾️", icon: "⚡️", symbol: "♘" }
 ];
 
-// Render functions
-function renderAll() {
-    renderSparta();
-    renderSayko();
-    renderLetters();
-    updateRankSelect();
-}
+// 🏰 الرتب الملكية
+const royalRanks = [
+    { rank: "الملك", name: "", money: "0", icon: "♠" },
+    { rank: "نواب الملك", name: "", money: "0", icon: "⚡" },
+    { rank: "الدوق", name: "", money: "0", icon: "🏰" },
+    { rank: "نواب الدوق", name: "", money: "0", icon: "⚔️" }
+];
 
-function renderSparta() {
-    const container = document.getElementById("sparta-ranks-container");
+// ⚡ الرتب الإدارية
+const adminRanks = [
+    { rank: "آدميرال", name: "شيرو", money: "500000", icon: "🦅" },
+    { rank: "نواب آدميرال", name: "يوكي", money: "450000", icon: "🛡️" },
+    { rank: "اليونكو", name: "", money: "0", icon: "🌊" },
+    { rank: "العميد", name: "", money: "0", icon: "🎖️" },
+    { rank: "هاشيرا", name: "", money: "0", icon: "⚡" },
+    { rank: "فارس", name: "", money: "0", icon: "🏇" },
+    { rank: "حامل بيرق", name: "", money: "0", icon: "🎌" },
+    { rank: "حامل راية", name: "", money: "0", icon: "🚩" },
+    { rank: "مشرف تدريبي", name: "اكيكو/سوكونا/أيزن", money: "100008", icon: "🎗️" },
+    { rank: "مشرف تدريبي", name: "أوروتشيمارو/ثورفين", money: "100000", icon: "🎗️" }
+];
+
+// 🔤 الحروف (28 حرفاً)
+const lettersData = {
+    "ا": [],
+    "ب": [],
+    "ت": [],
+    "ث": [],
+    "ج": [],
+    "ح": [],
+    "خ": [],
+    "د": [],
+    "ذ": [],
+    "ر": [],
+    "ز": [],
+    "س": [],
+    "ش": [],
+    "ص": [],
+    "ض": [],
+    "ط": [],
+    "ظ": [],
+    "ع": [],
+    "غ": [],
+    "ف": [],
+    "ق": [],
+    "ك": [],
+    "ل": [],
+    "م": [],
+    "ن": [],
+    "ه": [],
+    "و": [],
+    "ي": []
+};
+
+// ========================================
+// 🎨 دوال العرض
+// ========================================
+
+// عرض الرتب العليا
+function renderEliteRanks() {
+    const container = document.getElementById("elite-ranks");
     if (!container) return;
     container.innerHTML = "";
-    bankData.sparta.forEach(item => {
-        const displayName = item.name && item.name.trim() !== "" ? item.name : "➖ فارغ ➖";
+    eliteRanks.forEach(item => {
+        const nameDisplay = item.name && item.name.trim() !== "" ? item.name : "شاغر...";
         const card = document.createElement("div");
         card.className = "rank-card";
         card.innerHTML = `
             <div class="rank-info">
-                <span class="rank-name">✦ ${item.rank}</span>
-                <span class="rank-title">${displayName}</span>
+                <span class="rank-name">${item.symbol} ${item.rank} ${item.icon}</span>
+                <span class="rank-title">${nameDisplay}</span>
             </div>
             <div class="rank-money">💰 ${item.money}</div>
         `;
@@ -94,18 +89,19 @@ function renderSparta() {
     });
 }
 
-function renderSayko() {
-    const container = document.getElementById("sayko-ranks-container");
+// عرض الرتب الملكية
+function renderRoyalRanks() {
+    const container = document.getElementById("royal-ranks");
     if (!container) return;
     container.innerHTML = "";
-    bankData.sayko.forEach(item => {
-        const displayName = item.name && item.name.trim() !== "" ? item.name : "➖ شاغر ➖";
+    royalRanks.forEach(item => {
+        const nameDisplay = item.name && item.name.trim() !== "" ? item.name : "شاغر...";
         const card = document.createElement("div");
         card.className = "rank-card";
         card.innerHTML = `
             <div class="rank-info">
-                <span class="rank-name">✦ ${item.rank}</span>
-                <span class="rank-title">${displayName}</span>
+                <span class="rank-name">❈￤${item.icon} ◞${item.rank} ⤶</span>
+                <span class="rank-title">『 ${nameDisplay} 』</span>
             </div>
             <div class="rank-money">💰 ${item.money}</div>
         `;
@@ -113,210 +109,116 @@ function renderSayko() {
     });
 }
 
+// عرض الرتب الإدارية
+function renderAdminRanks() {
+    const container = document.getElementById("admin-ranks");
+    if (!container) return;
+    container.innerHTML = "";
+    adminRanks.forEach(item => {
+        const nameDisplay = item.name && item.name.trim() !== "" ? item.name : "شاغر...";
+        const card = document.createElement("div");
+        card.className = "rank-card";
+        card.innerHTML = `
+            <div class="rank-info">
+                <span class="rank-name">❅￤${item.icon} ◞${item.rank} ￤⤶</span>
+                <span class="rank-title">｢ ${nameDisplay} ｣</span>
+            </div>
+            <div class="rank-money">💰 ${item.money}</div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// عرض الحروف
 function renderLetters() {
     const container = document.getElementById("letters-container");
     if (!container) return;
     container.innerHTML = "";
     
-    for (const [letterName, members] of Object.entries(bankData.letters)) {
+    const letterList = Object.keys(lettersData);
+    for (let letter of letterList) {
+        const members = lettersData[letter] || [];
+        const letterDiv = document.createElement("div");
+        letterDiv.className = "letter-group";
+        
         if (members.length === 0) {
-            // عرض الحرف بدون أعضاء
-            const emptyDiv = document.createElement("div");
-            emptyDiv.className = "letter-group";
-            emptyDiv.innerHTML = `
-                <div class="letter-header">
-                    <span class="letter-name">✦ ${letterName}</span>
-                    <span class="letter-count">👥 لا يوجد أعضاء</span>
-                </div>
-                <div class="members-list">
-                    <div class="member-item" style="opacity:0.6;">
-                        <span class="member-name">➖ لا يوجد أعضاء ➖</span>
-                    </div>
-                </div>
-            `;
-            container.appendChild(emptyDiv);
-        } else {
-            const letterDiv = document.createElement("div");
-            letterDiv.className = "letter-group";
             letterDiv.innerHTML = `
                 <div class="letter-header">
-                    <span class="letter-name">✦ ${letterName}</span>
-                    <span class="letter-count">👥 ${members.length} عضو/أعضاء</span>
+                    <span>🔤 حرف ${letter}</span>
+                    <span>👥 لا يوجد أعضاء</span>
                 </div>
-                <div class="members-list" id="members-${letterName.replace(/[`•\s]/g, '')}">
+                <div class="members-list">
+                    <div class="member-item" style="justify-content:center;">➖ فارغ ➖</div>
                 </div>
             `;
-            const membersList = letterDiv.querySelector(`.members-list`);
-            members.forEach((member, idx) => {
-                const memberItem = document.createElement("div");
-                memberItem.className = "member-item";
-                memberItem.innerHTML = `
-                    <span class="member-name">🎭 ${member.name}</span>
-                    <div style="display: flex; gap: 8px; align-items: center;">
-                        <span class="member-money">💰 ${member.money}</span>
-                        <button class="delete-member" data-letter="${letterName}" data-index="${idx}">🗑️ حذف</button>
-                    </div>
-                `;
-                membersList.appendChild(memberItem);
-            });
-            container.appendChild(letterDiv);
+        } else {
+            letterDiv.innerHTML = `
+                <div class="letter-header">
+                    <span>🔤 حرف ${letter}</span>
+                    <span>👥 ${members.length} عضو</span>
+                </div>
+                <div class="members-list">
+                    ${members.map(m => `
+                        <div class="member-item">
+                            <span class="member-name">🎭 ${m.name}</span>
+                            <span class="member-money">💰 ${m.money}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
         }
-    }
-    
-    // إضافة حدث الحذف
-    document.querySelectorAll('.delete-member').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const letter = btn.dataset.letter;
-            const index = parseInt(btn.dataset.index);
-            if (bankData.letters[letter] && bankData.letters[letter][index]) {
-                bankData.letters[letter].splice(index, 1);
-                saveFullData(bankData);
-            }
-        });
-    });
-}
-
-function updateRankSelect() {
-    const sectionSelect = document.getElementById("admin-section");
-    const rankSelect = document.getElementById("admin-rank-select");
-    const repeatField = document.getElementById("admin-repeat");
-    
-    if (!rankSelect) return;
-    
-    const section = sectionSelect.value;
-    rankSelect.innerHTML = '<option value="">-- اختر من القائمة --</option>';
-    
-    if (section === "sparta") {
-        repeatField.style.display = "none";
-        bankData.sparta.forEach(item => {
-            const option = document.createElement("option");
-            option.value = item.rank;
-            option.textContent = item.rank;
-            rankSelect.appendChild(option);
-        });
-    } else if (section === "sayko") {
-        repeatField.style.display = "none";
-        bankData.sayko.forEach(item => {
-            const option = document.createElement("option");
-            option.value = item.rank;
-            option.textContent = item.rank;
-            rankSelect.appendChild(option);
-        });
-    } else if (section === "letters") {
-        repeatField.style.display = "flex";
-        letterList.forEach(letter => {
-            const option = document.createElement("option");
-            option.value = letter;
-            option.textContent = letter;
-            rankSelect.appendChild(option);
-        });
+        container.appendChild(letterDiv);
     }
 }
 
-function saveFullData(newData) {
-    bankData = newData;
-    localStorage.setItem("RitzBankDataV2", JSON.stringify(bankData));
-    renderAll();
+// عرض الكل
+function renderAll() {
+    renderEliteRanks();
+    renderRoyalRanks();
+    renderAdminRanks();
+    renderLetters();
 }
 
-// إضافة عضو جديد
-function addMember(section, rankValue, memberName, memberMoney, repeatCount = 1) {
-    if (section === "sparta") {
-        const index = bankData.sparta.findIndex(item => item.rank === rankValue);
-        if (index !== -1) {
-            bankData.sparta[index].name = memberName;
-            bankData.sparta[index].money = memberMoney;
-            saveFullData(bankData);
-            return true;
-        }
-    } else if (section === "sayko") {
-        const index = bankData.sayko.findIndex(item => item.rank === rankValue);
-        if (index !== -1) {
-            bankData.sayko[index].name = memberName;
-            bankData.sayko[index].money = memberMoney;
-            saveFullData(bankData);
-            return true;
-        }
-    } else if (section === "letters") {
-        if (!bankData.letters[rankValue]) {
-            bankData.letters[rankValue] = [];
-        }
-        // إضافة عدد التكرار
-        for (let i = 0; i < repeatCount; i++) {
-            bankData.letters[rankValue].push({
-                name: memberName + (repeatCount > 1 && i > 0 ? ` ${i+1}` : ""),
-                money: memberMoney
-            });
-        }
-        saveFullData(bankData);
-        return true;
+// ========================================
+// 🔐 نظام الإدارة (اختياري)
+// ========================================
+
+const ADMIN_PASSWORD = "784493479";
+let isAuthenticated = false;
+
+// إظهار إشعار
+function showToast(msg) {
+    let toast = document.getElementById("update-toast");
+    if (toast) {
+        toast.textContent = msg || "🔄 تم التحديث";
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2000);
     }
-    return false;
 }
 
-// Modal and UI events
+// تشغيل عند تحميل الصفحة
 document.addEventListener("DOMContentLoaded", () => {
     renderAll();
     
-    const modal = document.getElementById("admin-modal");
-    const openBtn = document.getElementById("admin-toggle-btn");
-    const closeSpan = document.querySelector(".close-modal");
-    const addBtn = document.getElementById("add-member-btn");
-    
-    const sectionSelect = document.getElementById("admin-section");
-    const rankSelect = document.getElementById("admin-rank-select");
-    const nameInput = document.getElementById("admin-name");
-    const moneyInput = document.getElementById("admin-money");
-    const repeatInput = document.getElementById("admin-repeat");
-    
-    function openModal() {
-        modal.style.display = "flex";
-        updateRankSelect();
-    }
-    function closeModal() {
-        modal.style.display = "none";
-        nameInput.value = "";
-        moneyInput.value = "♾️";
-        repeatInput.value = "1";
+    // زر الإدارة
+    const adminBtn = document.getElementById("admin-toggle-btn");
+    if (adminBtn) {
+        adminBtn.onclick = () => {
+            const pwd = prompt("🔐 أدخل رمز الدخول:");
+            if (pwd === ADMIN_PASSWORD) {
+                isAuthenticated = true;
+                alert("✅ مرحباً بك في لوحة التحكم\n\nيمكنك الآن تعديل البيانات مباشرة في ملف script.js\nثم تحديث الصفحة (F5) لرؤية التغييرات");
+            } else {
+                alert("❌ رمز خاطئ!");
+            }
+        };
     }
     
-    openBtn.onclick = openModal;
-    closeSpan.onclick = closeModal;
-    window.onclick = function(e) {
-        if (e.target === modal) closeModal();
-    };
-    
-    sectionSelect.onchange = () => {
-        updateRankSelect();
-    };
-    
-    addBtn.onclick = () => {
-        const section = sectionSelect.value;
-        const rankVal = rankSelect.value;
-        const memberName = nameInput.value.trim();
-        const memberMoney = moneyInput.value.trim() || "♾️";
-        const repeatCount = parseInt(repeatInput.value) || 1;
-        
-        if (!rankVal) {
-            alert("⚠️ الرجاء اختيار الرتبة أو الحرف من القائمة");
-            return;
+    // مزامنة فورية بين المتصفحات (اختياري)
+    window.addEventListener("storage", (e) => {
+        if (e.key === "eliteRanks") {
+            renderAll();
+            showToast("🔄 تم تحديث البيانات");
         }
-        
-        if (!memberName) {
-            alert("⚠️ الرجاء إدخال الاسم/اللقب");
-            return;
-        }
-        
-        const success = addMember(section, rankVal, memberName, memberMoney, repeatCount);
-        
-        if (success) {
-            alert(`✅ تم إضافة "${memberName}" بنجاح`);
-            nameInput.value = "";
-            moneyInput.value = "♾️";
-            repeatInput.value = "1";
-            closeModal();
-        } else {
-            alert("❌ حدث خطأ في الإضافة");
-        }
-    };
+    });
 });
