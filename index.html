@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>سبارتا | نظام الاستمارات الرسمي</title>
+    <!-- Font Awesome 6 (Free CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="components.css">
+</head>
+<body>
+
+    <!-- Hero Section with Dynamic Neon Effect -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="glitch-text" data-text="S.A.T ˹🩸˼ سبارتا">S.A.T ˹🩸˼ سبارتا</h1>
+            <p class="tagline">نظام الاستمارات الرسمي لمملكة الدماء</p>
+            <div class="neon-border"></div>
+        </div>
+    </section>
+
+    <!-- Main Container for All Forms -->
+    <main class="container" id="app">
+        <!-- All forms will be injected here dynamically by JS -->
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-pulse"></i> جاري تحميل الاستمارات...
+        </div>
+    </main>
+
+    <footer>
+        <p>مطور الأنظمة: إيتاشي | جميع الحقوق محفوظة لمملكة سبارتا 🩸</p>
+    </footer>
+
+    <!-- JavaScript Modules -->
+    <script src="data.js"></script>
+    <script src="cardRenderer.js"></script>
+    <script src="utils.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+/* additional components styling */
+.card-content pre {
+    background: #0b0e17;
+    padding: 1rem;
+    border-radius: 20px;
+    overflow-x: auto;
+    font-family: 'Courier New', 'Cairo', monospace;
+    font-size: 0.85rem;
+    border-left: 4px solid #e63946;
+}
+
+/* icons inside buttons */
+.btn i {
+    font-size: 1rem;
+}
+
+/* neat divider inside cards */
+.card-content hr {
+    border-color: #e6394640;
+    margin: 0.8rem 0;
+}
+
+/* custom toast notification */
+.toast-notify {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #1f2a3e;
+    border-right: 4px solid #e63946;
+    padding: 12px 20px;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+    animation: fadeOut 3s forwards;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; transform: translateY(0);}
+    70% { opacity: 1; transform: translateY(0);}
+    100% { opacity: 0; transform: translateY(20px); visibility: hidden;}
+}
+
+/* custom styling for fields */
+.form-field {
+    background: #00000030;
+    padding: 0.4rem 0.8rem;
+    border-radius: 14px;
+    font-family: monospace;
+    display: inline-block;
+    margin: 0.2rem;
+}

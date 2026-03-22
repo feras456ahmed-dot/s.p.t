@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at 10% 20%, #0a0f1e, #03050b);
+    color: #e0e0e0;
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.6;
+    padding: 0 1rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.glitch-text {
+    font-size: 2.8rem;
+    font-weight: 800;
+    position: relative;
+    color: #e63946;
+    text-shadow: 0 0 5px #e63946, 0 0 15px #a51c2c;
+    letter-spacing: 2px;
+}
+
+.tagline {
+    color: #c0c0c0;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.neon-border {
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #e63946, #e63946, transparent);
+    margin: 1rem auto 0;
+    border-radius: 2px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.4; width: 80px; }
+    50% { opacity: 1; width: 160px; }
+    100% { opacity: 0.4; width: 80px; }
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Card style for each form */
+.form-card {
+    background: rgba(10, 15, 30, 0.75);
+    backdrop-filter: blur(8px);
+    border-radius: 32px;
+    border: 1px solid rgba(230, 57, 70, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 12px rgba(230, 57, 70, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.form-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.6), 0 0 18px rgba(230, 57, 70, 0.5);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #1a1f2e, #0f121f);
+    padding: 1rem 1.8rem;
+    border-bottom: 2px solid #e63946;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.card-header h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #fff, #e63946);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 4px rgba(230,57,70,0.3);
+}
+
+.card-badge {
+    background: #e63946;
+    padding: 0.3rem 1rem;
+    border-radius: 60px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #0a0f1e;
+    box-shadow: 0 0 6px #e63946;
+}
+
+.card-content {
+    padding: 1.8rem;
+    white-space: pre-wrap;
+    font-family: 'Cairo', monospace;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(230, 57, 70, 0.3);
+    max-height: 400px;
+    overflow-y: auto;
+    direction: ltr;
+    text-align: left;
+}
+
+.card-content p, .card-content div {
+    direction: rtl;
+    text-align: right;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* custom scroll */
+.card-content::-webkit-scrollbar {
+    width: 5px;
+}
+.card-content::-webkit-scrollbar-track {
+    background: #1e1f2c;
+}
+.card-content::-webkit-scrollbar-thumb {
+    background: #e63946;
+    border-radius: 10px;
+}
+
+.card-actions {
+    padding: 1rem 1.8rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 40px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.btn-read {
+    background: #1f2a3e;
+    color: #e0e0e0;
+    border: 1px solid #e63946;
+}
+
+.btn-read:hover {
+    background: #2a3850;
+    transform: scale(1.02);
+    box-shadow: 0 0 8px #e63946;
+}
+
+.btn-copy {
+    background: #e63946;
+    color: #0a0f1e;
+    border: none;
+}
+
+.btn-copy:hover {
+    background: #ff4d5e;
+    transform: scale(1.02);
+    box-shadow: 0 0 10px #ff4d5e;
+}
+
+footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 1.5rem;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(230,57,70,0.3);
+    color: #aaa;
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.5rem;
+    color: #e63946;
+}
+
+@media (max-width: 768px) {
+    .glitch-text {
+        font-size: 2rem;
+    }
+    .card-header h2 {
+        font-size: 1.3rem;
+    }
+    .card-content {
+        padding: 1.2rem;
+    }
+}
